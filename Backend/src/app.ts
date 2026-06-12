@@ -5,6 +5,7 @@ import { errorMiddleware } from './middlewares/error.middleware';
 import mapsRouter from './modules/maps/maps.routes';
 import podsRouter from './modules/pods/pods.routes';
 import ledgerRouter from './modules/ledger/ledger.routes';
+import itineraryRouter from './modules/itinerary/itinerary.routes';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -18,6 +19,9 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/maps', mapsRouter);
 app.use('/api/v1/pods', podsRouter);
 app.use('/api/v1/ledger', ledgerRouter);
+// setup a basic route (Rule based for MVP)
+app.use('/api/v1/itinerary', itineraryRouter);
+
 
 // 2. Create a basic test route (The "Health Check")
 app.get('/', (req: Request, res: Response) => {
