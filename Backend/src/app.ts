@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 import pool, { testDatabaseConnection } from './config/db';
+import authRouter from './modules/auth/auth.routes';
+import { errorMiddleware } from './middlewares/error.middleware'; 
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -9,6 +11,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(express.json());
 
+app.use('/api/v1/auth', authRouter);
 
 // 2. Create a basic test route (The "Health Check")
 app.get('/', (req: Request, res: Response) => {
@@ -17,6 +20,8 @@ app.get('/', (req: Request, res: Response) => {
     message: "Welcome to the Pune Intern Network MVP API! Server is running cleanly."
   });
 });
+
+app.use(errorMiddleware);
 
 const startServer = async () => {
     await testDatabaseConnection();

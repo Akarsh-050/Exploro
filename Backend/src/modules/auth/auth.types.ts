@@ -1,5 +1,4 @@
 
-
 export interface DBUserRow {
   id: string;
   email: string;
@@ -19,7 +18,6 @@ export interface User {
   interests: string[];
   createdAt: Date;
 }
-
 
 export interface RegisterInputDTO {
   email: string;
