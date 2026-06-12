@@ -3,6 +3,8 @@ import pool, { testDatabaseConnection } from './config/db';
 import authRouter from './modules/auth/auth.routes';
 import { errorMiddleware } from './middlewares/error.middleware'; 
 import mapsRouter from './modules/maps/maps.routes';
+import podsRouter from './modules/pods/pods.routes';
+import ledgerRouter from './modules/ledger/ledger.routes';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -14,6 +16,8 @@ app.use(express.json());
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/maps', mapsRouter);
+app.use('/api/v1/pods', podsRouter);
+app.use('/api/v1/ledger', ledgerRouter);
 
 // 2. Create a basic test route (The "Health Check")
 app.get('/', (req: Request, res: Response) => {
